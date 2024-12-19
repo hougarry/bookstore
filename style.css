@@ -392,6 +392,10 @@ header {
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .gallery-item:hover {
@@ -530,8 +534,9 @@ header {
 
 .spotlight-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .spotlight-card {
@@ -553,6 +558,9 @@ header {
     border-radius: 50%;
     margin-bottom: 1.5rem;
     object-fit: cover;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .spotlight-card h3 {
@@ -585,10 +593,12 @@ header {
 .involvement-content {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
 }
 
 .involvement-text h3 {
@@ -603,6 +613,8 @@ header {
     margin-bottom: 1.5rem;
     color: #666;
     font-family: 'Calibri', sans-serif;
+    flex: 1;
+    min-width: 300px;
 }
 
 .involvement-text ul {
@@ -873,7 +885,7 @@ header {
     padding: 2rem;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info h3 {
@@ -893,7 +905,7 @@ header {
     background-color: white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -923,6 +935,54 @@ header {
     resize: vertical;
 }
 
+@media screen and (max-width: 768px) {
+    .contact-section {
+        padding: 3rem 2%;
+    }
+
+    .contact-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-info, 
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group textarea {
+        height: 120px;
+    }
+
+    .contact-form button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
 
 
 
@@ -958,7 +1018,7 @@ header {
     width: 80%;
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #aec6cf; /* Muted blue border */
+    border: 1px solid #aec6cf; 
     border-radius: 4px;
     margin-bottom: 15px;
     outline: none;
@@ -967,13 +1027,13 @@ header {
 
 /* Input hover/focus state */
 .subscribe-form input[type="email"]:focus {
-    border-color: #5a9bd5; /* Brighter blue on focus */
+    border-color: #5a9bd5; 
     box-shadow: #4CAF50;
 }
 
 /* Button styles */
 .subscribe-form .cta-button {
-    background-color: #5a9bd5; /* Bright literature blue */
+    background-color: #5a9bd5;
     color: white;
     padding: 10px 20px;
     font-size: 1rem;
@@ -986,7 +1046,7 @@ header {
 
 /* Button hover effect */
 .subscribe-form .cta-button:hover {
-    background-color: #4178a8; /* Darker literature blue */
+    background-color: #4178a8; 
 }
 
 /* Hint styles */
@@ -1081,6 +1141,216 @@ footer {
     color: #ecf0f1;
 }
 
+/* Mobile style */
 
 
+/* Base Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    position: relative; /* Ensure positioning for stacking contexts */
+}
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+/* Hide hamburger menu by default (desktop) */
+.hamburger-menu {
+    display: none;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        z-index: 10; /* Stacking context for menu */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Show hamburger menu on mobile */
+    .hamburger-menu {
+        display: block;
+        position: relative;
+        z-index: 9999; /* Make sure it's clickable above everything else */
+        cursor: pointer;
+        font-size: 30px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+/* Base Styles (already present, adapt as needed) */
+.customer-main {
+    padding: 20px;
+}
+
+/* Ensure images are responsive */
+.spotlight-card img,
+.involvement-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center images */
+}
+
+/* Spotlight Grid Adjustments */
+.spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.spotlight-card {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Community Involvement Section */
+.involvement-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.involvement-text, .involvement-image {
+    flex: 1;
+}
+
+/* Responsive Adjustments for Mobile*/
+@media screen and (max-width: 768px) {
+
+    .subscribe-form {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .subscribe-form input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .subscribe-form .cta-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    /* Make spotlight grid single-column or two-column on smaller screens */
+    .spotlight-grid {
+        grid-template-columns: 1fr; /* One column for very small screens */
+    }
+
+    .spotlight-card {
+        padding: 15px;
+    }
+
+    /* Adjust font sizes for smaller screens */
+    .spotlight-card h3 {
+        font-size: 18px;
+    }
+
+    .spotlight-card p {
+        font-size: 14px;
+    }
+
+    /* Community Involvement Section: stack vertically */
+    .involvement-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .involvement-text h3 {
+        font-size: 20px;
+    }
+
+    .involvement-text p, .involvement-text ul {
+        font-size: 14px;
+    }
+
+    .involvement-text ul {
+        padding-left: 20px;
+        text-align: left;
+    } 
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    /* Hero Section */
+    .about-hero-content h2 {
+        font-size: 22px;
+    }
+
+    .about-hero-content p {
+        font-size: 14px;
+    }
+
+    /* Achievements Grid */
+    .achievements-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    /* Contact Section */
+    .contact-container {
+        flex-direction: column;
+        text-align: center; 
+    }
+
+    .contact-info {
+        margin-bottom: 20px; 
+    }
+
+    .contact-form {
+        max-width: 100%; 
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 14px;
+    }
+
+    .contact-form button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+}

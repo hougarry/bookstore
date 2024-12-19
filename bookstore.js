@@ -2,38 +2,56 @@
 let cartItems = [];
 let isInitialized = false;
 
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize main functionality
     if (!isInitialized) {
         initializeCart();
         initializeGallery();
-        // initializeSubscribe();
         isInitialized = true;
     }
 
-    // Load header and footer dynamically
     loadSharedContent();
 });
 
-// Load shared content
 async function loadSharedContent() {
     const headerContainer = document.getElementById('header');
     const footerContainer = document.getElementById('footer');
 
     try {
-        // Fetch and inject header
+        // Load header
         const headerResponse = await fetch('header.html');
         const headerData = await headerResponse.text();
         if (headerContainer) headerContainer.innerHTML = headerData;
 
-        // Fetch and inject footer
+        // Load footer
         const footerResponse = await fetch('footer.html');
         const footerData = await footerResponse.text();
         if (footerContainer) footerContainer.innerHTML = footerData;
+
+        // Initialize Hamburger Menu after header loads
+        initializeHamburgerMenu();
     } catch (error) {
         console.error('Error loading content:', error);
     }
 }
+
+function initializeHamburgerMenu() {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburgerMenu && navLinks) {
+        // For debugging
+        console.log('Hamburger menu initialized');
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            console.log('Hamburger menu clicked');
+        });
+    } else {
+        console.warn('Hamburger menu or nav links not found.');
+    }
+}
+
+
 // Clear hint when the user starts typing again
 function clearHint() {
     const hint = document.getElementById("hint");
