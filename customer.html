@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookHaven - Customer Highlights</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+    <main class="customer-main">
+        <div class="customer-subscribe">
+            <h2>Sign up for Newsletter</h2>
+            <form id="newsletter-form" class="subscribe-form" novalidate>
+                <input 
+                    type="email" 
+                    id="email-input" 
+                    placeholder="Your email" 
+                    required 
+                    oninput="clearHint()">
+                <button type="button" id="subscribe-button" class="cta-button">
+                    Subscribe
+                </button>
+                <div id="hint"></div>
+            </form>
+        </div>
+        <section class="customer-spotlight">
+            <h2>Customer Spotlight</h2>
+            <div class="spotlight-grid">
+                <div class="spotlight-card">
+                    <img src="./files/p1.png" alt="Top Reader">
+                    <h3>Sarah Johnson</h3>
+                    <p>Our top reader of 2024! Sarah has read over 100 books this year and actively participates in our book clubs.</p>
+                </div>
+                <div class="spotlight-card">
+                    <img src="./files/p2.png" alt="Book Reviewer">
+                    <h3>Michael Chen</h3>
+                    <p>Distinguished book reviewer who has helped countless readers find their perfect match through detailed reviews.</p>
+                </div>
+                <div class="spotlight-card">
+                    <img src="./files/p3.png" alt="Community Leader">
+                    <h3>Emma Rodriguez</h3>
+                    <p>Leader of our monthly reading circle and organizer of our successful children's reading program.</p>
+                </div>
+                <div class="spotlight-card">
+                    <img src="./files/p4.png" alt="Literary Contributor">
+                    <h3>James Wilson</h3>
+                    <p>Regular contributor to our literary blog and mentor in our youth writing workshops.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="community-involvement">
+            <h2>Community Involvement</h2>
+            <div class="involvement-content">
+                <div class="involvement-text">
+                    <h3>Making a Difference Through Books</h3>
+                    <p>At BookHaven, we believe in the power of literature to transform communities. Our initiatives include:</p>
+                    <ul>
+                        <li>Annual Book Drive: Supporting local schools and libraries</li>
+                        <li>Reading Buddies Program: Connecting young readers with mentors</li>
+                        <li>Literary Festivals: Celebrating local authors and storytellers</li>
+                        <li>Community Book Clubs: Fostering meaningful discussions</li>
+                    </ul>
+                    <p>Join us in making reading accessible to everyone in our community!</p>
+                </div>
+                <div class="involvement-image">
+                    <img src="./files/hero.png" alt="Community Event">
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <div id="footer"></div>
+
+
+    <script src="bookstore.js"></script>
+</body>
+</html>

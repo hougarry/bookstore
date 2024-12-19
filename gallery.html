@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - BookHaven</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* Ensure modal is above other content */
+        #cartModal {
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cartItems">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="cart-buttons">
+                <button id="clearCart" class="cart-btn">Clear Cart</button>
+                <button id="processOrder" class="cart-btn">Process Order</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="gallery-main">
+        <section class="gallery-header">
+            <h2>Galleries</h2>
+            <div class="gallery-controls">
+                <div class="categories-filter">
+                    <button id="viewCartBtn" class="cart-button">View Cart <span id="cartCount">(0)</span></button>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Fiction</button>
+                        <button class="filter-btn">Non-Fiction</button>
+                        <button class="filter-btn">Sci-Fi</button>
+                        <button class="filter-btn">Biographies</button>
+                        <button class="filter-btn">Children</button>
+                    </div>
+                </div>
+                <div class="sort-control">
+                    <h3>Sort By</h3>
+                    <select class="sort-select">
+                        <option value="alphabetical">Alphabetical</option>
+                        <option value="recent">Most Recent</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-grid">
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Book1.png" alt="Book Cover">
+                </div>
+                <h4>The Great Adventure</h4>
+                <div class="item-description">
+                    <p>Fiction</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Magazine1.png" alt="Book Cover">
+                </div>
+                <h4>Science Today</h4>
+                <div class="item-description">
+                    <p>Non-Fiction</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Book2.png" alt="Book Cover">
+                </div>
+                <h4>Space Chronicles</h4>
+                <div class="item-description">
+                    <p>Sci-Fi</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Notebook.png" alt="Book Cover">
+                </div>
+                <h4>Life Story</h4>
+                <div class="item-description">
+                    <p>Biography</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Stickers.png" alt="Book Cover">
+                </div>
+                <h4>Mystery Manor</h4>
+                <div class="item-description">
+                    <p>Fiction</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Magazine2.png" alt="Book Cover">
+                </div>
+                <h4>History of Time</h4>
+                <div class="item-description">
+                    <p>Non-Fiction</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_ToteBag.png" alt="Book Cover">
+                </div>
+                <h4>Future World</h4>
+                <div class="item-description">
+                    <p>Sci-Fi</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Book3.png" alt="Book Cover">
+                </div>
+                <h4>Tech Pioneers</h4>
+                <div class="item-description">
+                    <p>Biography</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Magazine3.png" alt="Book Cover">
+                </div>
+                <h4>Ocean Tales</h4>
+                <div class="item-description">
+                    <p>Children</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Book1.png" alt="Book Cover">
+                </div>
+                <h4>Star Quest</h4>
+                <div class="item-description">
+                    <p>Sci-Fi</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_Notebook.png" alt="Book Cover">
+                </div>
+                <h4>Nature's Way</h4>
+                <div class="item-description">
+                    <p>Non-Fiction</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="thumbnail">
+                    <img src="./files/Client3_ToteBag.png" alt="Book Cover">
+                </div>
+                <h4>Dream Land</h4>
+                <div class="item-description">
+                    <p>Children</p>
+                    <button class="view-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="bookstore.js"></script>
+</body>
+</html>
