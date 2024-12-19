@@ -90,6 +90,23 @@ document.getElementById('subscribe-button').addEventListener('click', function()
 
 
 // Cart functionality
+
+// Load cart items from sessionStorage
+function loadCartFromSession() {
+    const storedItems = sessionStorage.getItem('cartItems');
+    if (storedItems) {
+        cartItems = JSON.parse(storedItems);
+    } else {
+        cartItems = [];
+    }
+}
+
+// Save cart items to sessionStorage
+function saveCartToSession() {
+    sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+// Cart functionality
 function initializeCart() {
     const cartModal = document.getElementById('cartModal');
     const viewCartBtn = document.getElementById('viewCartBtn');
@@ -103,6 +120,9 @@ function initializeCart() {
         console.error('Cart elements not found');
         return;
     }
+
+    // Load existing cart items from sessionStorage
+    loadCartFromSession();
 
     // Update cart count display
     function updateCartCount() {
@@ -135,6 +155,7 @@ function initializeCart() {
             button.addEventListener('click', (e) => {
                 const index = parseInt(e.target.dataset.index);
                 cartItems.splice(index, 1);
+                saveCartToSession(); // Save updated cart
                 updateCartCount();
                 renderCartItems();
             });
@@ -160,6 +181,7 @@ function initializeCart() {
     // Clear cart functionality
     clearCartBtn.addEventListener('click', () => {
         cartItems = [];
+        saveCartToSession(); // Save empty cart
         updateCartCount();
         renderCartItems();
     });
@@ -172,6 +194,7 @@ function initializeCart() {
         }
         alert('Thank you for your order! We will process it shortly.');
         cartItems = [];
+        saveCartToSession(); // Clear cart in sessionStorage
         updateCartCount();
         renderCartItems();
         cartModal.style.display = 'none';
@@ -186,6 +209,7 @@ function initializeCart() {
             const category = item.querySelector('.item-description p').textContent;
 
             cartItems.push({ title, category });
+            saveCartToSession(); // Save updated cart
             updateCartCount();
             alert(`Added "${title}" to your cart!`);
         });
@@ -194,6 +218,9 @@ function initializeCart() {
     // Initialize cart count
     updateCartCount();
 }
+
+
+
 
 // Gallery functionality
 function initializeGallery() {
