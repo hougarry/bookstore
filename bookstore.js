@@ -51,43 +51,90 @@ function initializeHamburgerMenu() {
     }
 }
 
-
-// Clear hint when the user starts typing again
-function clearHint() {
-    const hint = document.getElementById("hint");
-    hint.style.display = "none";
-}
-// Add event listener to the subscribe button
-document.getElementById('subscribe-button').addEventListener('click', function() {
-    const emailInput = document.getElementById('email-input');
-    const hint = document.getElementById("hint");
-    const emailValue = emailInput.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Check if the input is empty
-    if (emailValue === "") {
-        hint.textContent = "Please fill out this field.";
-        hint.style.display = "block";
-        emailInput.focus();
-        return;
+document.addEventListener('DOMContentLoaded', function() {
+    // Subscribe function
+    // Clear hint when the user starts typing again
+    function clearHint() {
+        const hint = document.getElementById("hint");
+        hint.style.display = "none";
     }
+    // Add event listener to the subscribe button
+    document.getElementById('subscribe-button').addEventListener('click', function() {
+        const emailInput = document.getElementById('email-input');
+        const hint = document.getElementById("hint");
+        const emailValue = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Check for invalid email format
-    if (!emailRegex.test(emailValue)) {
-        hint.textContent = "Please enter a valid email address.";
-        hint.style.display = "block";
-        emailInput.focus();
-        return;
-    }
+        // Check if the input is empty
+        if (emailValue === "") {
+            hint.textContent = "Please fill out this field.";
+            hint.style.display = "block";
+            emailInput.focus();
+            return;
+        }
 
-    // If everything is valid
-    hint.style.display = "none"; // Hide the hint
-    emailInput.value = ""; // Clear the input
-    alert("Thank you for subscribing!"); // Show confirmation
+        // Check for invalid email format
+        if (!emailRegex.test(emailValue)) {
+            hint.textContent = "Please enter a valid email address.";
+            hint.style.display = "block";
+            emailInput.focus();
+            return;
+        }
+
+        // If everything is valid
+        hint.style.display = "none"; // Hide the hint
+        emailInput.value = ""; // Clear the input
+        alert("Thank you for subscribing!"); // Show confirmation
+    });
+
+
+
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Contact form 
+    const form = document.getElementById('form');
+    const result = document.getElementById('result');
 
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
+        // Store form data in sessionStorage
+        localStorage.setItem('contactFormData', json);
 
+        result.innerHTML = "Please wait...";
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status === 200) {
+                result.innerHTML = "Form submitted successfully";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
+    });
+});
 
 // Cart functionality
 
@@ -279,42 +326,3 @@ function initializeGallery() {
 }
 
 
-
-const form = document.getElementById('form');
-const result = document.getElementById('result');
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const formData = new FormData(form);
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
-  result.innerHTML = "Please wait..."
-
-    fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-                result.innerHTML = "Form submitted successfully";
-            } else {
-                console.log(response);
-                result.innerHTML = json.message;
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            result.innerHTML = "Something went wrong!";
-        })
-        .then(function() {
-            form.reset();
-            setTimeout(() => {
-                result.style.display = "none";
-            }, 3000);
-        });
-});
